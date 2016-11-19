@@ -39,7 +39,7 @@ While acquiring data, it is very helpful to give variables a meaningful name, if
 
 #### 1. Building a full dataset from the individual files
 
-Here, I take the X, Y, and subject files and collapse them using `rbind()`. This is also per David Hood's advice. It could also be done with `merge()`, which appeals to database people more than rbind(), but I felt it would be simpler for peer reviewing.
+Here, I take the X, Y, and subject files and collapse them using `rbind()`. This is also per David Hood's advice. It could also be done with `merge()`, which appeals to database people more than `rbind()`, but I felt the former would be more appropriated for this assignment.
 
 After X, Y, and subjects are all joined, the whole set is combined with the `cbind()` command. 
 
