@@ -12,7 +12,8 @@ unzip(zipfile="./data/Dataset.zip",exdir="./data")
 
 # Reading all files into R
 # File structure from the original downloaded file was preserved,
-# hence the paths "/train" and "/test":
+# hence the paths "/train" and "/test".
+# ATTENTION: set your working directory to the "/data" directory created above!
 x_train <- read.table("train/X_train.txt", header = FALSE)
 x_test <- read.table("test/X_test.txt", header = FALSE)
 y_train <- read.table("train/y_train.txt", header = FALSE)
