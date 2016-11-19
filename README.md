@@ -35,7 +35,7 @@ Not much mystery here. I've followed the example given in the very first lecture
 
 I've used the `unzip()` command to extract the files to the "/data" directory.
 
-While acquiring data, it is very helpful to give variables a meaningful name, if there isn't one, for the sake of joining tables in the future. You may end up with two "V1" variables, and it might be complicated to sort out which is which. I do that on line 27 of my script, so I can tell the activity code from the subject code. 
+While acquiring data, it is very helpful to give variables a meaningful name, if there isn't one, for the sake of joining tables in the future. You may end up with two "V1" variables, and it might be complicated to sort out which is which. I do that on line 28 of my script, so I can tell the activity code from the subject code. 
 
 #### 1. Building a full dataset from the individual files
 
