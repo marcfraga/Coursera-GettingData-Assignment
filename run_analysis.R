@@ -1,13 +1,14 @@
 ## Preliminary step => get the data from the web
+# If you already have the files unziped, skip to line 13.
+# (make sure you set you working directory to "./data"
 # Using relative path "./data" 
 # Method "curl" is required for Mac users
-if(!file.exists("./data"))
-    {dir.create("./data")}
+if(!file.exists("./data")){dir.create("./data")}
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(fileUrl,destfile="./data/Dataset.zip", method = "curl")
 
-# Loading the dplyr package
-#library(dplyr)
+# Extracting the file
+unzip(zipfile="./data/Dataset.zip",exdir="./data")
 
 # Reading all files into R
 # File structure from the original downloaded file was preserved,
@@ -33,9 +34,7 @@ x <- rbind(x_train, x_test)
 y <- rbind(y_train, y_test)
 s <- rbind(subject_train, subject_test)
 
-# Creating a table with all data (except Subjects, which
-# will be added later. This is necessary to extract the 
-# desired columns on Step 2)
+# Creating a table with all data 
 fullData <- cbind(s,y,x)
 
 ## Step2 => Extracting only 'mean' and 'std' measurements
@@ -45,17 +44,11 @@ colnames(fullData) <- c("Subject", "activity", featureNames) # change the column
 filteredData <- grep("-mean\\(\\)|-std\\(\\)", colnames(fullData)) # search for mean & std within column names
 newData <- fullData[,c(1,2,filteredData)] # creates new dataset with columns 1 (subject), 2 (activity), and the 66 variables selected above
 
-
-
-# Creating a new dataset with only the desired columns mean() and std()
-#fullData2 <- fullData[, activitiesMeanStd]
-# -----------
-
 ## Step 3  => Using descriptive activity names for the activities
 # Replacing integer value (activityID) with its textual description
-newData$activity[newData$activity == 1] <- "walking"
-newData$activity[newData$activity == 2] <- "walking upstairs"
-newData$activity[newData$activity == 3] <- "walking downstairs"
+newData$activity[newData$activity == 1] <- "Walking"
+newData$activity[newData$activity == 2] <- "Walking upstairs"
+newData$activity[newData$activity == 3] <- "Walking downstairs"
 newData$activity[newData$activity == 4] <- "Sitting"
 newData$activity[newData$activity == 5] <- "Standing"
 newData$activity[newData$activity == 6] <- "Laying"
@@ -65,16 +58,10 @@ newData$activity[newData$activity == 6] <- "Laying"
 # Here we can fix names so they provide better descriptions of variables.
 # Descrptions were based on document "features_info.txt"
 names(newData) <- gsub('Acc',"Accel",names(newData))
-#names(newData) <- gsub('',"",names(newData))
-#names(newData) <- gsub('',"",names(newData))
-#names(newData) <- gsub('',"",names(newData))
-#names(newData) <- gsub('',"",names(newData))
-#names(newData) <- gsub('',"",names(newData))
-#names(newData) <- gsub('',"",names(newData))
-#names(newData) <- gsub('',"",names(newData))
-#names(newData) <- gsub('',"",names(newData))
-#names(newData) <- gsub('',"",names(newData))
-#names(newData) <- gsub('',"",names(newData))
+names(newData) <- gsub('std',"StdDev",names(newData))
+names(newData) <- gsub('^t',"Time",names(newData))
+names(newData) <- gsub('^f',"Freq",names(newData))
+names(newData) <- gsub('mag',"Magnitude",names(newData))
 
 ## Step 5 => Creating a second, independent tidy data set
 # Using library 'dplyr', which was better explaine throughout the course
@@ -86,7 +73,13 @@ newDataValues <- newData[, 3:68] # removing the subject and activity columns
 
 # Using aggregate to build a new dataset with the average for all measurements
 # Here the values for 'Subject' and 'Activity' are aggreagated to the calculated mean
-tidy <- aggregate(newDataValues, list(Subject = newData$Subject, Activity = newData$activity), mean)
+tidySet <- aggregate(newDataValues, list(Subject = newData$Subject, Activity = newData$activity), mean)
 
 # Writing the file
-write.table(tidy, file="tidy_Dataset.txt", row.names = FALSE)
+write.table(tidySet, file="tidy_Dataset.txt", row.names = FALSE)
+
+#####
+## To test the file created above:
+## (remove #s and execute the one below)
+## tidy <- read.table("tidy_Dataset.txt", header = TRUE) 
+## header = TRUE is VERY IMPORTANT!!!
