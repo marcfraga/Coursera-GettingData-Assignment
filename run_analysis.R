@@ -64,7 +64,7 @@ names(newData) <- gsub('^f',"Freq",names(newData))
 names(newData) <- gsub('mag',"Magnitude",names(newData))
 
 ## Step 5 => Creating a second, independent tidy data set
-# Using library 'dplyr', which was better explaine throughout the course
+# Using library 'dplyr', which was better explained throughout the course
 library(dplyr)
 
 # Removing the non-numeric values to allow for aggregation
