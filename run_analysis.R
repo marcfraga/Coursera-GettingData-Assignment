@@ -83,6 +83,11 @@ newDataValues <- newData[, 3:68] # removing the subject and activity columns
 # Here the values for 'Subject' and 'Activity' are aggreagated to the calculated mean
 tidySet <- aggregate(newDataValues, list(Subject = newData$Subject, Activity = newData$activity), mean)
 
+# Arranging the dataset by Subject (i.e., order the data by ascending number
+# of subjects), using the arrange() command from dplyr:
+# PLEASE NOTICE: THIS IS OPTIONAL. The resulting dataset from above was ordered by activity.
+tidySet <- arrange(tidySet, Subject)
+
 # Writing the file
 write.table(tidySet, file="tidy_dataset.txt", row.names = FALSE)
 
