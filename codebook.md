@@ -10,17 +10,23 @@ For more information about the raw data, please check the `README.txt` file from
 
 ###The tidy dataset
 
-Readings are related to the time and frequency domains, which are represented by the prefixes
+For this dataset, only 68 variables are present. The two first ones are `subject`, an ID number for each research subject, and `activity`, which is a textual description of the six activities mentioned earlier.
+
+The dataset contains normalized data on the readings from the phone's accelerometer and gyroscope in the X, Y, and Z axis. All readings are related to the time and frequency domains, which are represented by the prefixes
 ```
 Time
 Freq
 ```
 
-The dataset contains normalized data on the readings from the phone's accelerometer and gyroscope in the X, Y, and Z axis. This is labeled as:
+The source of the reading -- accelerometer or gyroscope -- is labeled as:
 ```
 Accel
 Gyro
 ```
+
+
+
+Readings also comprise the instant angular acceleration, 
 
 
 
