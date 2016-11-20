@@ -31,11 +31,15 @@ or by using, for instance, the select() command from dplyr. Therefore, I believe
 
 #### Getting the Data
 
-Not much mystery here. I've followed the example given in the very first lecture and repeated thoughout the course: using a "data" directory, using that little script to check if it's there already and, if not, creating it. 
+**This portion is entirely commented. Since all reviewers have already downloaded the data, you may proceed to Step 1.**
 
-I've used the `unzip()` command to extract the files to the "/data" directory.
+I've built this portion for training purposes, and/or for those who'd like to see a script working from the very beginning. 
 
-While acquiring data, it is very helpful to give variables a meaningful name, if there isn't one, for the sake of joining tables in the future. You may end up with two "V1" variables, and it might be complicated to sort out which is which. I do that on line 28 of my script, so I can tell the activity code from the subject code. 
+I've followed the example given in the very first lecture and repeated thoughout the course: using a "data" directory, using that little script to check if it's there already and, if not, creating it. 
+
+I've used the `unzip()` command to extract the files to the "/data" directory. Then, because the files open inside a directory named "UCI HAR Dataset," there's a command to set the working directory to that directory. 
+
+**Important**: While acquiring data, it is very helpful to give variables a meaningful name, if there isn't one, for the sake of joining tables in the future. You may end up with two "V1" variables, and it might be complicated to sort out which is which. I do that on line 34 of my script, so I can tell the activity code from the subject code. 
 
 #### 1. Building a full dataset from the individual files
 
