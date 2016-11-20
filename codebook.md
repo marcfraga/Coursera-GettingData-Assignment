@@ -10,7 +10,7 @@ For more information about the raw data, please check the `README.txt` file from
 
 ###The tidy dataset
 
-For this dataset, only 68 variables are present. The two first ones are `subject`, an ID number for each research subject, and `activity`, which is a textual description of the six activities mentioned earlier.
+For this dataset, only 68 variables are present. The two first ones are `subject`, an ID number for each research subject, and `activity`, which is a textual description of the six activities mentioned earlier. The table is ordered by 
 
 The dataset contains normalized data on the readings from the phone's accelerometer and gyroscope in the X, Y, and Z axis. All readings are related to the time and frequency domains, which are represented by the prefixes
 ```
@@ -24,18 +24,22 @@ Accel
 Gyro
 ```
 
+Readings also comprise the instant acceleration, called `jerk`, coming either from the gyroscope or the accelerometer. They can be the raw number or the weighed `magnitude`. These are labeled as follows:
 
+```
+Jerk
+Magnitude
+```
 
-Readings also comprise the instant angular acceleration, 
+Finally, for the purpose of this assignment, we have selected only the variables containing values for *mean* and *standard deviation*. These are labeled in the dataset as:
 
-
-
-For the purpose of this assignment, we have selected only the variables containing values for *mean* and *standard deviation*. These are labeled in the dataset as:
 ```
 StdDev
 Mean
 ```
-asdasd
+
+Below is the full list of variables in this dataset:
+
 ```
 Subject
 Activity                              
@@ -99,11 +103,11 @@ FreqBodyGyroStdDev()Y
 FreqBodyGyroStdDev()Z
 FreqBodyAccelMagnitudeMean()
 FreqBodyAccelMagnitudeStdDev()
-FreqBodyBodyAccelJerkMagnitudeMean()
-FreqBodyBodyAccelJerkMagnitudeStdDev()
-FreqBodyBodyGyroMagnitudeMean()
-FreqBodyBodyGyroMagnitudeStdDev()
-FreqBodyBodyGyroJerkMagnitudeMean()
-FreqBodyBodyGyroJerkMagnitudeStdDev()
+FreqBodyAccelJerkMagnitudeMean()
+FreqBodyAccelJerkMagnitudeStdDev()
+FreqBodyGyroMagnitudeMean()
+FreqBodyGyroMagnitudeStdDev()
+FreqBodyGyroJerkMagnitudeMean()
+FreqBodyGyroJerkMagnitudeStdDev()
 ```
 dsfsdfs
