@@ -29,7 +29,7 @@ and variables (columns) can be selected either with the
 
 or by using, for instance, the select() command from dplyr. Therefore, I believe the "narrow" form, with stacked variables, would make it harder to select an individual, an activity (or any combination of these), and the desired activity. In my understanding, it would also potentially require an extra variable to code the measurements so as to reduce error. (Again, I am the relational database person, feel free to respond and criticize this approach.)
 
-#### Getting the Data
+### Getting the Data
 
 **This portion is entirely commented. Since all reviewers have already downloaded the data, you may proceed to Step 1.**
 
