@@ -44,7 +44,7 @@ StdDev
 Mean
 ```
 
-Below is the full list of variables in this dataset:
+Below is the full list of variables in this dataset, in the exact order they appear in the dataset (columns 3 to 68):
 
 ```
 Subject
