@@ -1,19 +1,23 @@
-## Preliminary step => get the data from the web
-# If you already have the files unziped, skip to line 13.
-# (make sure you set you working directory to "./data"
-# Using relative path "./data" 
-# Method "curl" is required for Mac users
-if(!file.exists("./data")){dir.create("./data")}
-fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-download.file(fileUrl,destfile="./data/Dataset.zip", method = "curl")
+#### Get the data from the web.
+#### Method "curl" is required for Mac users
 
-# Extracting the file
-unzip(zipfile="./data/Dataset.zip",exdir="./data")
+# if(!file.exists("./data")){dir.create("./data")}
+#fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+#download.file(fileUrl,destfile="./data/Dataset.zip", method = "curl")
+
+## Extracting the file
+# unzip(zipfile="./data/Dataset.zip",exdir=getwd())
+
+## Setting the work directory.
+# setwd("./UCI HAR Dataset")
+
+#################################################################
+### SET YOUR WORKING DIRECTORY TO WHERE YOUR UNZIPPED DATA IS ###
+#################################################################
 
 # Reading all files into R
 # File structure from the original downloaded file was preserved,
-# hence the paths "/train" and "/test".
-# ATTENTION: set your working directory to the "/data" directory created above!
+# hence the paths "/train" and "/test."
 x_train <- read.table("train/X_train.txt", header = FALSE)
 x_test <- read.table("test/X_test.txt", header = FALSE)
 y_train <- read.table("train/y_train.txt", header = FALSE)
@@ -47,24 +51,24 @@ newData <- fullData[,c(1,2,filteredData)] # creates new dataset with columns 1 (
 
 ## Step 3  => Using descriptive activity names for the activities
 # Replacing integer value (activityID) with its textual description
-newData$activity[newData$activity == 1] <- "Walking"
-newData$activity[newData$activity == 2] <- "Walking upstairs"
-newData$activity[newData$activity == 3] <- "Walking downstairs"
-newData$activity[newData$activity == 4] <- "Sitting"
-newData$activity[newData$activity == 5] <- "Standing"
-newData$activity[newData$activity == 6] <- "Laying"
+newData$activity[newData$activity == 1] <- "WALKING"
+newData$activity[newData$activity == 2] <- "WALKING_UPSTAIRS"
+newData$activity[newData$activity == 3] <- "WALKING_DOWNSTAIRS"
+newData$activity[newData$activity == 4] <- "SITTING"
+newData$activity[newData$activity == 5] <- "STANDING"
+newData$activity[newData$activity == 6] <- "LAYING"
 
 ## Step 4 =>  Giving the dataset descriptive variable names
 # At this point, the columns (=variables) already have descriptive names. 
 # Here we can fix names so they provide better descriptions of variables.
 # Descrptions were based on document "features_info.txt"
+names(newData) <- gsub('mean',"Mean",names(newData))
 names(newData) <- gsub('Acc',"Accel",names(newData))
 names(newData) <- gsub('std',"StdDev",names(newData))
 names(newData) <- gsub('^t',"Time",names(newData))
 names(newData) <- gsub('^f',"Freq",names(newData))
-names(newData) <- gsub('mag',"Magnitude",names(newData))
+names(newData) <- gsub('Mag',"Magnitude",names(newData))
 names(newData) <- gsub('-',"",names(newData))
-names(newData) <- gsub('()',"",names(newData))
 
 ## Step 5 => Creating a second, independent tidy data set
 # Using library 'dplyr', which was better explained throughout the course
@@ -79,10 +83,8 @@ newDataValues <- newData[, 3:68] # removing the subject and activity columns
 tidySet <- aggregate(newDataValues, list(Subject = newData$Subject, Activity = newData$activity), mean)
 
 # Writing the file
-write.table(tidySet, file="tidy_Dataset.txt", row.names = FALSE)
+write.table(tidySet, file="tidy_dataset.txt", row.names = FALSE)
 
-#####
-## To test the file created above:
-## (remove #s and execute the one below)
-## tidy <- read.table("tidy_Dataset.txt", header = TRUE) 
-## header = TRUE is VERY IMPORTANT!!!
+#### Testing the file just created ####
+# newDataset <- read.table("tidy_dataset.txt", header = TRUE)
+# (don't forget the 'header = TRUE' argument!
