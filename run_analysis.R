@@ -68,6 +68,7 @@ names(newData) <- gsub('std',"StdDev",names(newData))
 names(newData) <- gsub('^t',"Time",names(newData))
 names(newData) <- gsub('^f',"Freq",names(newData))
 names(newData) <- gsub('Mag',"Magnitude",names(newData))
+names(newData) <- gsub('BodyBody',"Body",names(newData))
 names(newData) <- gsub('-',"",names(newData))
 
 ## Step 5 => Creating a second, independent tidy data set
