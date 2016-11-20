@@ -24,6 +24,12 @@ Accel
 Gyro
 ```
 
+The acceleration signal was split into `body` and `gravity` acceleration filter, as per the original documentation referenced above. This is labeled as follows:
+```
+Body
+Gravity
+```
+
 Readings also comprise the instant acceleration, called `jerk`, coming either from the gyroscope or the accelerometer. They can be the raw number or the weighed `magnitude`. These are labeled as follows:
 
 ```
@@ -110,4 +116,5 @@ FreqBodyGyroMagnitudeStdDev()
 FreqBodyGyroJerkMagnitudeMean()
 FreqBodyGyroJerkMagnitudeStdDev()
 ```
-dsfsdfs
+
+
